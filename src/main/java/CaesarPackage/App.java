@@ -3,18 +3,31 @@
  */
 package CaesarPackage;
 
-public class App {    public static void main(String args[]){
+import java.util.Scanner;
 
-//        Scanner sc= new Scanner(System.in);
-    String alfabebt="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+public class App {
+    public static String alfabebt="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    public static String alfaBerria="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static App nireApp=null;
 
-    alfabebt=new App().desordenatu(alfabebt);
-    System.out.println(alfabebt+" da zure alfabetua");
-    //System.out.println("Ondo dago ")
-    System.out.println("sartu mezua mesedez:");
+    public static void main(String args[]){
+
+        nireApp=new App();
+
+        Scanner sc= new Scanner(System.in);
+        alfaBerria=nireApp.desordenatu(alfabebt);
+        System.out.println(alfaBerria+" da zure alfabetua");
+        String mezuGarbia="Mezu hau zifratuko da";
 
 
-    //String mezuGarbia=sc.next();
+        String kriptograma=nireApp.caesarZifratu(mezuGarbia);
+        System.out.println(kriptograma);
+
+        System.out.println("####################################");
+
+        kriptograma=nireApp.caesarDezifratu(kriptograma);
+        System.out.println(kriptograma);
+
 }
 
     private String desordenatu(String aldatzeko){
@@ -42,4 +55,45 @@ public class App {    public static void main(String args[]){
         lista[a]=lista[b];
         lista[b]=lag;
     }
+
+   public String caesarZifratu(String prozesuan){
+        prozesuan=prozesuan.toUpperCase();
+        char[] lista=prozesuan.toCharArray();
+        String emaitza="";
+
+        for (int i=0;i<lista.length;i++){
+            char lag=lista[i];
+
+            if(lag!=' '){
+                int unekoa=alfabebt.indexOf(lista[i]);
+                System.out.println(unekoa);
+                emaitza=emaitza+alfaBerria.charAt(unekoa);
+            }
+            else{
+                emaitza=emaitza+" ";
+            }
+        }
+        return emaitza;
+    }
+
+    public String caesarDezifratu(String prozesuan){
+        prozesuan=prozesuan.toUpperCase();
+        char[] lista=prozesuan.toCharArray();
+        String emaitza="";
+
+        for (int i=0;i<lista.length;i++){
+            char lag=lista[i];
+
+            if(lag!=' '){
+                int unekoa=alfaBerria.indexOf(lista[i]);
+                System.out.println(unekoa);
+                emaitza=emaitza+alfabebt.charAt(unekoa);
+            }
+            else{
+                emaitza=emaitza+" ";
+            }
+        }
+        return emaitza;
+    }
+
 }
