@@ -8,4 +8,14 @@ import static org.junit.Assert.*;
 
 public class AppTest {
 
+    App app=new App();
+
+    public void testZifratu() {
+        assertEquals("BP MZTVB MBWWZWBJ ZGVB", app.zifratu("EZ GAUDE GERRAREN ALDE"));
+    }
+    public void testDeszifratu() {
+
+        assertEquals("EZ GAUDE GERRAREN ALDE", app.deszifratu(app.zifratu("EZ GAUDE GERRAREN ALDE")));
+
+    }
 }

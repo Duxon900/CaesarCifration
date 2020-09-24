@@ -3,7 +3,7 @@
  */
 package CaesarPackage;
 
-import java.util.Scanner;
+import java.lang.CharSequence;
 
 public class App {
     public static String alfabebt="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -14,23 +14,49 @@ public class App {
 
         nireApp=new App();
 
-        Scanner sc= new Scanner(System.in);
-        alfaBerria=nireApp.desordenatu(alfabebt);
+        nireApp.desordenatuGakoarekin("zxcvbnmasdfghjklqwertyuiop");
         System.out.println(alfaBerria+" da zure alfabetua");
-        String mezuGarbia="Mezu hau zifratuko da";
+        String mezuGarbia="ez gaude gerraren alde";
 
-
-        String kriptograma=nireApp.caesarZifratu(mezuGarbia);
+        String kriptograma=nireApp.zifratu(mezuGarbia);
         System.out.println(kriptograma);
 
         System.out.println("####################################");
 
-        kriptograma=nireApp.caesarDezifratu(kriptograma);
+        kriptograma=nireApp.deszifratu(kriptograma);
         System.out.println(kriptograma);
 
-}
+    }
 
-    private String desordenatu(String aldatzeko){
+    private void desordenatuGakoarekin(String gakoa){
+        String emaitza;
+        gakoa=gakoa.toUpperCase();
+        emaitza=gakoa;
+
+        for(int i=0;i<alfabebt.length();i++){
+            char lag=alfabebt.charAt(i);
+            boolean bool=false;
+            int a=0;
+
+            while(!bool && a<gakoa.length()){
+                char unekoa=gakoa.charAt(a);
+                if(unekoa==lag){
+                    bool=true;
+                }
+                a++;
+            }
+
+            if (!bool) emaitza=emaitza+lag;
+
+        }
+
+        alfaBerria=emaitza;
+
+    }
+
+
+
+    private void desordenatu(String aldatzeko){
         char[] lista=aldatzeko.toCharArray();
         lista=fisherYates(lista);
 
@@ -39,7 +65,7 @@ public class App {
             emaitza=emaitza+lista[i];
         }
 
-        return emaitza;
+        alfaBerria=emaitza;
     }
     //Fisher-Yates shuffle eraginkorra da lista txikiak desordenatzeko, gure kasuan 26 elementuko lista da
     private char[] fisherYates(char[] lista){
@@ -56,9 +82,9 @@ public class App {
         lista[b]=lag;
     }
 
-   public String caesarZifratu(String prozesuan){
-        prozesuan=prozesuan.toUpperCase();
-        char[] lista=prozesuan.toCharArray();
+   public String zifratu(String mezua){
+        mezua=mezua.toUpperCase();
+        char[] lista=mezua.toCharArray();
         String emaitza="";
 
         for (int i=0;i<lista.length;i++){
@@ -66,7 +92,6 @@ public class App {
 
             if(lag!=' '){
                 int unekoa=alfabebt.indexOf(lista[i]);
-                System.out.println(unekoa);
                 emaitza=emaitza+alfaBerria.charAt(unekoa);
             }
             else{
@@ -76,9 +101,9 @@ public class App {
         return emaitza;
     }
 
-    public String caesarDezifratu(String prozesuan){
-        prozesuan=prozesuan.toUpperCase();
-        char[] lista=prozesuan.toCharArray();
+    public String deszifratu(String kripto){
+        kripto=kripto.toUpperCase();
+        char[] lista=kripto.toCharArray();
         String emaitza="";
 
         for (int i=0;i<lista.length;i++){
@@ -86,7 +111,6 @@ public class App {
 
             if(lag!=' '){
                 int unekoa=alfaBerria.indexOf(lista[i]);
-                System.out.println(unekoa);
                 emaitza=emaitza+alfabebt.charAt(unekoa);
             }
             else{
