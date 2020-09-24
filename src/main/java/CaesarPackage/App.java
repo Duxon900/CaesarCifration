@@ -13,7 +13,6 @@ public class App {
     public static void main(String args[]){
 
         nireApp=new App();
-
         nireApp.desordenatuGakoarekin("zxcvbnmasdfghjklqwertyuiop");
         System.out.println(alfaBerria+" da zure alfabetua");
         String mezuGarbia="ez gaude gerraren alde";
