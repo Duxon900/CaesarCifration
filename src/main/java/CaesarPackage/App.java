@@ -3,42 +3,50 @@
  */
 package CaesarPackage;
 
-import java.lang.CharSequence;
 
 public class App {
     public static String alfabebt="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     public static String alfaBerria="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private static App nireApp=null;
 
-    public static void main(String args[]){
+    public static void main(String[] args){
 
-        nireApp=new App();
-        nireApp.desordenatuGakoarekin("zxcvbnmasdfghjklqwertyuiop");
+        App nireApp = new App();
+        nireApp.desordenatuGakoarekin("ryzexdtfucygvibhjokn");
         System.out.println(alfaBerria+" da zure alfabetua");
         String mezuGarbia="ez gaude gerraren alde";
 
-        String kriptograma=nireApp.zifratu(mezuGarbia);
+        String kriptograma= nireApp.zifratu(mezuGarbia);
         System.out.println(kriptograma);
 
         System.out.println("####################################");
 
-        kriptograma=nireApp.deszifratu(kriptograma);
+        kriptograma= nireApp.deszifratu(kriptograma);
         System.out.println(kriptograma);
 
     }
 
     private void desordenatuGakoarekin(String gakoa){
-        String emaitza;
+        String emaitza = "";
         gakoa=gakoa.toUpperCase();
-        emaitza=gakoa;
 
-        for(int i=0;i<alfabebt.length();i++){
-            char lag=alfabebt.charAt(i);
+        //Lortu gakoaren letra ez errepikatuak
+        emaitza=hitzaSortu(gakoa,emaitza);
+
+        //Lortu beste letra guztiak
+        emaitza=hitzaSortu(alfabebt,emaitza);
+
+        alfaBerria=emaitza;
+    }
+
+
+    private String hitzaSortu(String gakoa,String emaitza){
+        for(int i=0;i<gakoa.length();i++){
+            char lag=gakoa.charAt(i);
             boolean bool=false;
             int a=0;
 
-            while(!bool && a<gakoa.length()){
-                char unekoa=gakoa.charAt(a);
+            while(!bool && a<emaitza.length()){
+                char unekoa=emaitza.charAt(a);
                 if(unekoa==lag){
                     bool=true;
                 }
@@ -46,11 +54,8 @@ public class App {
             }
 
             if (!bool) emaitza=emaitza+lag;
-
         }
-
-        alfaBerria=emaitza;
-
+        return emaitza;
     }
 
 
@@ -60,7 +65,7 @@ public class App {
         lista=fisherYates(lista);
 
         String emaitza="";
-        for (int i=0;i<lista.length;i++){
+        for (int i = 0; lista.length > i; i++){
             emaitza=emaitza+lista[i];
         }
 
