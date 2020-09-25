@@ -6,13 +6,14 @@ package CaesarPackage;
 
 public class App {
     public static String alfabebt="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    public static String alfaBerria="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private String alfaBerria="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static App nireApp=getNireApp();
 
     public static void main(String[] args){
 
-        App nireApp = new App();
-        nireApp.desordenatuGakoarekin("ryzexdtfucygvibhjokn");
-        System.out.println(alfaBerria+" da zure alfabetua");
+        nireApp=getNireApp();
+        nireApp.desordenatuGakoarekin("ZXCVBNMASDFGHJKLQWERTYUIOP");
+        System.out.println(nireApp.alfaBerria+" da zure alfabetua");
         String mezuGarbia="ez gaude gerraren alde";
 
         String kriptograma= nireApp.zifratu(mezuGarbia);
@@ -25,7 +26,15 @@ public class App {
 
     }
 
-    private void desordenatuGakoarekin(String gakoa){
+    //Singleton patroia
+    public static synchronized App getNireApp(){
+        if(nireApp==null){
+            nireApp=new App();
+        }
+        return nireApp;
+    }
+
+    public void desordenatuGakoarekin(String gakoa){
         String emaitza = "";
         gakoa=gakoa.toUpperCase();
 
@@ -59,8 +68,7 @@ public class App {
     }
 
 
-
-    private void desordenatu(String aldatzeko){
+    public void desordenatu(String aldatzeko){
         char[] lista=aldatzeko.toCharArray();
         lista=fisherYates(lista);
 
@@ -71,6 +79,7 @@ public class App {
 
         alfaBerria=emaitza;
     }
+
     //Fisher-Yates shuffle eraginkorra da lista txikiak desordenatzeko, gure kasuan 26 elementuko lista da
     private char[] fisherYates(char[] lista){
         for (int i=0;i<lista.length;i++){
