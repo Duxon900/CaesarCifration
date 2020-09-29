@@ -103,7 +103,6 @@ public class Caesar extends Application {
                gridPane.add(sartuGakoa,1,2);
             }
             else if(!checkBox.isSelected()){
-                System.out.println("kaixo");
                 //elementuak ezabatzeko taulatik
                 gridPane.getChildren().removeAll(gakoaText,sartuGakoa);
                 // gridPane.add(new Label("si no lo borro es porque no me sale de los guebos"),0,3);
