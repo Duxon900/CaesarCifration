@@ -99,8 +99,8 @@ public class Caesar extends Application {
         checkBox.setOnAction(e ->{
             if(checkBox.isSelected()){
                 //Elementuak sartzeko taulan
-               gridPane.add(gakoaText,0,2);
-               gridPane.add(sartuGakoa,1,2);
+                gridPane.add(gakoaText,0,2);
+                gridPane.add(sartuGakoa,1,2);
             }
             else if(!checkBox.isSelected()){
                 //elementuak ezabatzeko taulatik
@@ -221,7 +221,7 @@ public class Caesar extends Application {
         lista[b]=lag;
     }
 
-   public String zifratu(String mezua){
+    public String zifratu(String mezua){
         mezua=mezua.toUpperCase();
         char[] lista=mezua.toCharArray();
         String emaitza="";
